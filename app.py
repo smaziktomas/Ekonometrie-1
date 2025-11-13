@@ -189,7 +189,7 @@ elif main_page == "Úkoly 7–11":
             df_resid = model.df_resid
             p_value = 2 * (1 - t.cdf(abs(t_stat), df_resid))
             st.markdown("**Hypotézy:**  \nH0: β_(female × urban) = 0  \nH1: β_(female × urban) ≠ 0")
-            st.metric("p-hodnota", f"{p_value:.4f}")
+            st.metric("p-hodnota", f"{fmt(p_value)} %")
             decision = "Zamítáme H0" if p_value < 0.05 else "Nezamítáme H0"
             st.metric("Rozhodnutí (α=5%)", decision)
 
@@ -210,5 +210,5 @@ elif main_page == "Úkoly 7–11":
             wage_normality = np.exp(log_pred + sigma2 / 2)
             smearing_factor = np.mean(np.exp(model.resid))
             wage_duan = np.exp(log_pred) * smearing_factor
-            st.metric("Mzda (normalita)", f"{wage_normality:.2f}")
-            st.metric("Mzda (Duan)", f"{wage_duan:.2f}")
+            st.metric("Mzda (normalita)", f"{fmt(wage_normality)}")
+            st.metric("Mzda (Duan)", f"{fmt(wage_duan)}")
